@@ -13,7 +13,7 @@
 <body>
 
 <nav id="main-nav-bar" class="flex-center">
-    <a href="index.html" class="nav-container" id="nav-con-1">
+    <a href="/" class="nav-container" id="nav-con-1">
         <img src="public/imgs/logos/logo-01.png" alt="">
     </a>
     <div class="nav-container flex-center" id="nav-con-2">
@@ -38,12 +38,12 @@
 
 
 <header id="main-header" class="flex-center header-top">
-    <a href="" class="header-link">Rice Meals</a>
-    <a href="" class="header-link">Noodles & Pasta</a>
-    <a href="" class="header-link">Snacks</a>
-    <a href="" class="header-link">Desserts & Sweets</a>
-    <a href="" class="header-link">Drinks & Refreshements</a>
-    <a href="" class="header-link">Baked Goods</a>
+    <a onclick="typeButton('riceMeal')" class="header-link">Rice Meals</a>
+    <a onclick="typeButton('noodles')" class="header-link">Noodles & Pasta</a>
+    <a onclick="typeButton('snacks')" class="header-link">Snacks</a>
+    <a onclick="typeButton('desserts')" class="header-link">Desserts & Sweets</a>
+    <a onclick="typeButton('drinks')" class="header-link">Drinks & Refreshements</a>
+    <a onclick="typeButton('bakedGoods')" class="header-link">Baked Goods</a>
 </header>
 
 
@@ -289,12 +289,8 @@
             const posts = (await res.json()).slice().reverse();
             const postCon = document.querySelector(".social-post-con");
 
-            // Loop through each post
             for (const post of posts) {
 
-                // Fetch the user info based on userId
-
-                // Create post HTML
                 const postItem = document.createElement("div");
                 postItem.classList.add("posts-item", "flex-center");
 
@@ -397,7 +393,6 @@ async function loadUsers() {
                             <h4>${user.name}</h4>
                         </div>
                     `;
-                    // 👇 When clicked, go to that user’s profile
                     userBtn.addEventListener("click", () => {
                         window.location.href = `profile.html?id=${user.id}`;
                     });

@@ -14,7 +14,7 @@
     <body>
 
         <nav id="main-nav-bar" class="flex-center">
-            <a href="index.html" class="nav-container" id="nav-con-1">
+            <a href="/" class="nav-container" id="nav-con-1">
                 <img src="public/imgs/logos/logo-01.png" alt="">
             </a>
             <div class="nav-container flex-center" id="nav-con-2">
@@ -39,12 +39,12 @@
 
 
         <header id="main-header" class="flex-center header-top">
-            <a href="" class="header-link">Rice Meals</a>
-            <a href="" class="header-link">Noodles & Pasta</a>
-            <a href="" class="header-link">Snacks</a>
-            <a href="" class="header-link">Desserts & Sweets</a>
-            <a href="" class="header-link">Drinks & Refreshements</a>
-            <a href="" class="header-link">Baked Goods</a>
+            <a onclick="typeButton('riceMeal')" class="header-link">Rice Meals</a>
+            <a onclick="typeButton('noodles')" class="header-link">Noodles & Pasta</a>
+            <a onclick="typeButton('snacks')" class="header-link">Snacks</a>
+            <a onclick="typeButton('desserts')" class="header-link">Desserts & Sweets</a>
+            <a onclick="typeButton('drinks')" class="header-link">Drinks & Refreshements</a>
+            <a onclick="typeButton('bakedGoods')" class="header-link">Baked Goods</a>
         </header>
 
 
@@ -169,7 +169,7 @@
 
                 <div class="register-text flex-center">
                     <h1>“Gutom? Login Muna, Then Kain!”</h1>
-                    <h3>“Order your canteen faves in just a few clicks — no hassle, no pila, all delicious!”</h3>
+                    <h3>“Order your canteen faves in just a few clicks, no hassle, all delicious!”</h3>
                 </div>
             </div>
 
@@ -193,6 +193,8 @@
                         email: form.email.value,
                         password: form.password.value
                     };
+
+                    console.log(formData);
 
                     try {
                         const response = await fetch("http://localhost:8090/api/users/login", {

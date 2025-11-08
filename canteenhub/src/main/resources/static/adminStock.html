@@ -13,7 +13,7 @@
 <body>
 
 <nav id="main-nav-bar" class="flex-center">
-    <a href="index.html" class="nav-container" id="nav-con-1">
+    <a href="/" class="nav-container" id="nav-con-1">
         <img src="public/imgs/logos/logo-01.png" alt="">
     </a>
     <div class="nav-container flex-center" id="nav-con-2">
@@ -46,12 +46,9 @@
         </a>
         <a href="admin.html" class="admin-link-con flex-center">
             <img src="public/imgs/icons/trend.png" alt="">
-            <h3>Sales Summary</h3>
+            <h3>Manage Orders</h3>
         </a>
-        <a href="" class="admin-link-con flex-center">
-            <img src="public/imgs/icons/manager.png" alt="">
-            <h3>View Accounts</h3>
-        </a>
+
         <!-- <div class="flex-center admin-side-footer">
             <h3>@2025 CanteenHub</h3>
         </div> -->
@@ -587,7 +584,6 @@
 <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
 <script src="public/js/script.js"></script>
 <script>
-    // Load all items from backend
     async function loadItems() {
         try {
             const res = await fetch("http://localhost:8090/api/items"); // adjust port if needed
@@ -597,7 +593,7 @@
             console.log("Items received:", data);
 
             const stockContainer = document.getElementById("admin-stock");
-            stockContainer.innerHTML = ""; // clear container
+            stockContainer.innerHTML = "";
 
             data.forEach(item => {
                 const isStocked = item.status === "stocked";
@@ -641,14 +637,12 @@
         }
     }
 
-    // Toggle stock/unstock button (and update backend)
     async function toggleButton(btn) {
         const itemId = btn.getAttribute("data-id");
         const currentStatus = btn.getAttribute("data-status");
         const newStatus = currentStatus === "stocked" ? "unstocked" : "stocked";
 
         try {
-            // PATCH request to backend
             const res = await fetch(`http://localhost:8090/api/items/${itemId}/status`, {
                 method: "PATCH",
                 headers: { "Content-Type": "application/json" },
@@ -657,9 +651,8 @@
 
             if (!res.ok) throw new Error(`Failed to update item ${itemId}`);
             const updatedItem = await res.json();
-            console.log("✅ Updated item:", updatedItem);
+            console.log(" Updated item:", updatedItem);
 
-            // Update button UI instantly
             btn.textContent = newStatus === "stocked" ? "Stocked" : "Unstocked";
             btn.setAttribute("data-status", newStatus);
             btn.classList.toggle("stock-color");

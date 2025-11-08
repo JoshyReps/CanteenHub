@@ -13,7 +13,7 @@
 <body>
 
 <nav id="main-nav-bar" class="flex-center">
-    <a href="index.html" class="nav-container" id="nav-con-1">
+    <a href="/" class="nav-container" id="nav-con-1">
         <img src="public/imgs/logos/logo-01.png" alt="">
     </a>
     <div class="nav-container flex-center" id="nav-con-2">
@@ -38,12 +38,12 @@
 
 
 <header id="main-header" class="flex-center header-top">
-    <a href="" class="header-link">Rice Meals</a>
-    <a href="" class="header-link">Noodles & Pasta</a>
-    <a href="" class="header-link">Snacks</a>
-    <a href="" class="header-link">Desserts & Sweets</a>
-    <a href="" class="header-link">Drinks & Refreshements</a>
-    <a href="" class="header-link">Baked Goods</a>
+    <a onclick="typeButton('riceMeal')" class="header-link">Rice Meals</a>
+    <a onclick="typeButton('noodles')" class="header-link">Noodles & Pasta</a>
+    <a onclick="typeButton('snacks')" class="header-link">Snacks</a>
+    <a onclick="typeButton('desserts')" class="header-link">Desserts & Sweets</a>
+    <a onclick="typeButton('drinks')" class="header-link">Drinks & Refreshements</a>
+    <a onclick="typeButton('bakedGoods')" class="header-link">Baked Goods</a>
 </header>
 
 
@@ -273,220 +273,212 @@
 <script src="public/js/script.js"></script>
 <script>
     document.addEventListener("DOMContentLoaded", () => {
-      const loggedUser = safeJSONParse(localStorage.getItem("loggedUser"), null);
-      const currentType = localStorage.getItem("selectedType");
+        const loggedUser = safeJSONParse(localStorage.getItem("loggedUser"), null);
+        const currentType = localStorage.getItem("selectedType");
 
-      const rangeInput = document.getElementById("priceRange");
-      const searchInput = document.getElementById("menuSearch");
-      const searchBtn = document.getElementById("searchBtn");
-      const sortButtons = document.querySelectorAll(".sort-btn");
-      const menuGallery = document.querySelector(".menu-gallery-con");
+        const rangeInput = document.getElementById("priceRange");
+        const searchInput = document.getElementById("menuSearch");
+        const searchBtn = document.getElementById("searchBtn");
+        const sortButtons = document.querySelectorAll(".sort-btn");
+        const menuGallery = document.querySelector(".menu-gallery-con");
 
-      let allItems = [];
-      let filteredItems = [];
-      let likedIds = [];
+        let allItems = [];
+        let filteredItems = [];
+        let likedIds = [];
 
-      // --- Load items ---
-      async function loadItems() {
-        try {
-          const response = await fetch("http://localhost:8090/api/items");
-          const data = await response.json();
+        async function loadItems() {
+            try {
+                const response = await fetch("http://localhost:8090/api/items");
+                const data = await response.json();
 
-          allItems = currentType
-            ? data.filter(item => item.type === currentType)
-            : data;
+                allItems = currentType
+                ? data.filter(item => item.type === currentType)
+                : data;
 
-          // Fetch liked items if logged in
-          if (loggedUser) {
-            const likesRes = await fetch(`http://localhost:8090/api/likes/user/${loggedUser.id}`);
-            const likedItems = await likesRes.json();
-            likedIds = likedItems.map(i => i.id);
-          }
+                if (loggedUser) {
+                    const likesRes = await fetch(`http://localhost:8090/api/likes/user/${loggedUser.id}`);
+                    const likedItems = await likesRes.json();
+                    likedIds = likedItems.map(i => i.id);
+                }
 
-          filteredItems = [...allItems];
-          renderItems(filteredItems);
-        } catch (error) {
-          console.error("Error loading items:", error);
-        }
-      }
-
-      // --- Render items ---
-      function renderItems(items) {
-        menuGallery.innerHTML = "";
-
-        if (!items.length) {
-          menuGallery.innerHTML = "<p class='no-items'>No items found.</p>";
-          return;
+                filteredItems = [...allItems];
+                renderItems(filteredItems);
+            } catch (error) {
+                console.error("Error loading items:", error);
+            }
         }
 
-        items.forEach(item => {
-          const isLiked = likedIds.includes(item.id);
-          const likeIcon = isLiked
-            ? "public/imgs/icons/like-pressed.png"
-            : "public/imgs/icons/like.png";
+        function renderItems(items) {
+            menuGallery.innerHTML = "";
 
-          const itemHTML = `
-            <div class="gallery-item-con" data-id="${item.id}">
-              <button class="gallery-overlay flex-center" onclick="order(${item.id})">
+            if (!items.length) {
+                menuGallery.innerHTML = "<p class='no-items'>No items found.</p>";
+                return;
+            }
+
+            items.forEach(item => {
+                const isLiked = likedIds.includes(item.id);
+                const likeIcon = isLiked
+                ? "public/imgs/icons/like-pressed.png"
+                : "public/imgs/icons/like.png";
+
+                const itemHTML = `
+                    <div class="gallery-item-con" data-id="${item.id}">
+                        <button class="gallery-overlay flex-center" onclick="order(${item.id})">
                 <h2>*Tap to Order*</h2>
-              </button>
-              <div class="gallery-overlay-btn">
-                <button class="like-btn" data-id="${item.id}">
-                  <img src="${likeIcon}" alt="like">
                 </button>
-              </div>
-              <div class="gallery-img-con">
-                <img src="${item.imageUrl || 'public/imgs/items/placeholder.png'}" alt="${item.name}">
-              </div>
-              <div class="gallery-bottom-con flex-center">
-                <div class="gallery-text-con flex-center">
-                  <h4>${item.name}</h4>
-                  <h5>${formatType(item.type)}</h5>
+                <div class="gallery-overlay-btn">
+                    <button class="like-btn" data-id="${item.id}">
+                        <img src="${likeIcon}" alt="like">
+                    </button>
                 </div>
-                <div class="gallery-price-con">
-                  <p>₱${item.price}.00</p>
+                <div class="gallery-img-con">
+                    <img src="${item.imageUrl || 'public/imgs/items/placeholder.png'}" alt="${item.name}">
                 </div>
-              </div>
+                <div class="gallery-bottom-con flex-center">
+                    <div class="gallery-text-con flex-center">
+                        <h4>${item.name}</h4>
+                        <h5>${formatType(item.type)}</h5>
+                    </div>
+                    <div class="gallery-price-con">
+                        <p>₱${item.price}.00</p>
+                    </div>
+                </div>
             </div>
-          `;
-          menuGallery.insertAdjacentHTML("beforeend", itemHTML);
+            `;
+            menuGallery.insertAdjacentHTML("beforeend", itemHTML);
         });
 
         attachLikeListeners();
       }
 
-      // --- Like button handling ---
-      function attachLikeListeners() {
+    function attachLikeListeners() {
         document.querySelectorAll(".like-btn").forEach(btn => {
-          btn.addEventListener("click", async () => {
-            if (!loggedUser) {
-              alert("You must be logged in to like an item.");
-              return;
-            }
+            btn.addEventListener("click", async () => {
+                if (!loggedUser) {
+                    alert("You must be logged in to like an item.");
+                    return;
+                }
 
-            const itemId = parseInt(btn.dataset.id);
-            const img = btn.querySelector("img");
+                const itemId = parseInt(btn.dataset.id);
+                const img = btn.querySelector("img");
 
-            try {
-              const res = await fetch(
-                `http://localhost:8090/api/likes/toggle?userId=${loggedUser.id}&itemId=${itemId}`,
-                { method: "POST" }
-              );
-              const result = await res.text();
+                try {
+                    const res = await fetch(
+                        `http://localhost:8090/api/likes/toggle?userId=${loggedUser.id}&itemId=${itemId}`,
+                        { method: "POST" }
+                    );
+                    const result = await res.text();
 
-              const isNowLiked = result.includes("Liked");
-              img.src = isNowLiked
-                ? "public/imgs/icons/like-pressed.png"
-                : "public/imgs/icons/like.png";
+                    const isNowLiked = result.includes("Liked");
+                    img.src = isNowLiked
+                        ? "public/imgs/icons/like-pressed.png"
+                        : "public/imgs/icons/like.png";
 
-              if (isNowLiked) likedIds.push(itemId);
-              else likedIds = likedIds.filter(id => id !== itemId);
+                    if (isNowLiked) likedIds.push(itemId);
+                    else likedIds = likedIds.filter(id => id !== itemId);
 
-              img.classList.add("pop");
-              setTimeout(() => img.classList.remove("pop"), 200);
-            } catch (err) {
-              console.error("Error toggling like:", err);
-            }
-          });
+                    img.classList.add("pop");
+                    setTimeout(() => img.classList.remove("pop"), 200);
+                } catch (err) {
+                    console.error("Error toggling like:", err);
+                }
+            });
         });
-      }
+    }
 
-      // --- Filters and sorting ---
-      rangeInput?.addEventListener("input", () => {
+    rangeInput?.addEventListener("input", () => {
         const maxPrice = parseFloat(rangeInput.value);
         applyFilters({ maxPrice });
-      });
+    });
 
-      searchBtn?.addEventListener("click", () => {
+    searchBtn?.addEventListener("click", () => {
         const query = searchInput.value.trim().toLowerCase();
         applyFilters({ query });
-      });
+    });
 
-      searchInput?.addEventListener("keyup", e => {
+    searchInput?.addEventListener("keyup", e => {
         if (e.key === "Enter") searchBtn.click();
-      });
+    });
 
-      sortButtons.forEach(button => {
+    sortButtons.forEach(button => {
         button.addEventListener("click", async () => {
-          const sortLabel = button.innerText.trim();
-          let sortType = "";
+            const sortLabel = button.innerText.trim();
+            let sortType = "";
 
-          if (sortLabel.includes("A–Z") || sortLabel.includes("A-Z")) sortType = "az";
-          else if (sortLabel.includes("Z–A") || sortLabel.includes("Z-A")) sortType = "za";
-          else if (sortLabel.includes("Least")) sortType = "cheap";
-          else if (sortLabel.includes("Liked")) sortType = "liked";
+            if (sortLabel.includes("A–Z") || sortLabel.includes("A-Z")) sortType = "az";
+            else if (sortLabel.includes("Z–A") || sortLabel.includes("Z-A")) sortType = "za";
+            else if (sortLabel.includes("Least")) sortType = "cheap";
+            else if (sortLabel.includes("Liked")) sortType = "liked";
 
-          await applyFilters({ sortType });
+            await applyFilters({ sortType });
         });
-      });
+    });
 
-      // --- Main filter logic ---
-      async function applyFilters({ sortType, query, maxPrice } = {}) {
+    async function applyFilters({ sortType, query, maxPrice } = {}) {
         let result = [...allItems];
 
         if (query) {
-          result = result.filter(item =>
-            item.name.toLowerCase().includes(query.toLowerCase())
-          );
+            result = result.filter(item =>
+                item.name.toLowerCase().includes(query.toLowerCase())
+            );
         }
 
         if (maxPrice) {
-          result = result.filter(item => item.price <= maxPrice);
+            result = result.filter(item => item.price <= maxPrice);
         }
 
         if (sortType) {
-          switch (sortType) {
-            case "az":
-              result.sort((a, b) => a.name.localeCompare(b.name));
-              break;
-            case "za":
-              result.sort((a, b) => b.name.localeCompare(a.name));
-              break;
-            case "cheap":
-              result.sort((a, b) => a.price - b.price);
-              break;
-            case "liked":
-              if (loggedUser) {
-                const res = await fetch(`http://localhost:8090/api/likes/user/${loggedUser.id}`);
-                const likedItems = await res.json();
-                result = currentType
-                  ? likedItems.filter(i => i.type === currentType)
-                  : likedItems;
-              } else {
-                result = currentType
-                  ? allItems.filter(i => i.likedByUser && i.type === currentType)
-                  : allItems.filter(i => i.likedByUser);
-              }
-              break;
-          }
+            switch (sortType) {
+                case "az":
+                    result.sort((a, b) => a.name.localeCompare(b.name));
+                    break;
+                case "za":
+                    result.sort((a, b) => b.name.localeCompare(a.name));
+                    break;
+                case "cheap":
+                    result.sort((a, b) => a.price - b.price);
+                    break;
+                case "liked":
+                    if (loggedUser) {
+                        const res = await fetch(`http://localhost:8090/api/likes/user/${loggedUser.id}`);
+                        const likedItems = await res.json();
+                        result = currentType
+                        ? likedItems.filter(i => i.type === currentType)
+                        : likedItems;
+                    } else {
+                        result = currentType
+                        ? allItems.filter(i => i.likedByUser && i.type === currentType)
+                        : allItems.filter(i => i.likedByUser);
+                    }
+                break;
+            }
         }
 
-        renderItems(result);
-      }
-
-      // --- Helpers ---
-      function formatType(type) {
-        switch (type) {
-          case "riceMeal": return "Rice Meal";
-          case "noodles": return "Noodles & Pasta";
-          case "snacks": return "Snacks";
-          case "desserts": return "Desserts & Sweets";
-          case "drinks": return "Drinks & Refreshments";
-          case "bakedGoods": return "Baked Goods";
-          default: return type;
+            renderItems(result);
         }
-      }
 
-      function safeJSONParse(str, fallback = null) {
-        try {
-          return JSON.parse(str);
-        } catch {
-          return fallback;
+        function formatType(type) {
+            switch (type) {
+                case "riceMeal": return "Rice Meal";
+                case "noodles": return "Noodles & Pasta";
+                case "snacks": return "Snacks";
+                case "desserts": return "Desserts & Sweets";
+                case "drinks": return "Drinks & Refreshments";
+                case "bakedGoods": return "Baked Goods";
+                default: return type;
+            }
         }
-      }
 
-      // --- Start ---
-      loadItems();
+        function safeJSONParse(str, fallback = null) {
+            try {
+                return JSON.parse(str);
+            } catch {
+                return fallback;
+            }
+        }
+
+        loadItems();
     });
 </script>
 

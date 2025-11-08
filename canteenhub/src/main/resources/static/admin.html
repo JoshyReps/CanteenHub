@@ -13,7 +13,7 @@
 <body>
 
 <nav id="main-nav-bar" class="flex-center">
-    <a href="index.html" class="nav-container" id="nav-con-1">
+    <a href="/" class="nav-container" id="nav-con-1">
         <img src="public/imgs/logos/logo-01.png" alt="">
     </a>
     <div class="nav-container flex-center" id="nav-con-2">
@@ -46,12 +46,9 @@
         </a>
         <a href="admin.html" class="admin-link-con flex-center">
             <img src="public/imgs/icons/trend.png" alt="">
-            <h3>Sales Summary</h3>
+            <h3>Manage Orders</h3>
         </a>
-        <a href="" class="admin-link-con flex-center">
-            <img src="public/imgs/icons/manager.png" alt="">
-            <h3>View Accounts</h3>
-        </a>
+
         <!-- <div class="flex-center admin-side-footer">
             <h3>@2025 CanteenHub</h3>
         </div> -->
@@ -469,13 +466,6 @@
                 </div>
             </div>
 
-
-
-            <!-- <div id="admin-stocks" class="hidden">
-
-            </div> -->
-
-
         </div>
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
@@ -489,9 +479,7 @@
                     const data = await res.json();
 
                     const adminSales = document.querySelector("#admin-sales .admin-order");
-                    adminSales.innerHTML = "";
 
-                    // Group by user email
                     const grouped = {};
                     data.forEach(order => {
                         const email = order.userId?.email || "Unknown";
@@ -552,7 +540,6 @@
             }
 
 
-            // 🗑️ Delete order(s) when Pending button is clicked
             document.addEventListener("click", async (e) => {
                 const btn = e.target.closest(".status-btn");
                 if (!btn) return;
@@ -564,20 +551,18 @@
                 if (currentStatus === "pending") {
                     if (!confirm("Confirm this order?")) return;
 
-                    // delete all related orders
                     for (const id of orderIds) {
                         try {
                             const res = await fetch(`http://localhost:8090/api/orders/${id}`, {
                                 method: "DELETE"
                             });
-                            if (res.ok) console.log(`✅ Order ${id} deleted`);
-                            else console.error(`❌ Failed to delete order ${id}`);
+                            if (res.ok) console.log(`Order ${id} deleted`);
+                            else console.error(`Failed to delete order ${id}`);
                         } catch (err) {
                             console.error(err);
                         }
                     }
 
-                    // Remove the element visually
                     orderItem.style.transition = "opacity 0.3s ease";
                     orderItem.style.opacity = "0";
                     setTimeout(() => orderItem.remove(), 300);

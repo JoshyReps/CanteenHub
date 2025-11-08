@@ -1,37 +1,143 @@
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profile</title>
+    <title>CanteenHub</title>
     <link href="https://api.fontshare.com/v2/css?f[]=satoshi@300&f[]=switzer@400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css"/>
     <link rel="stylesheet" href="public/style.css">
 </head>
+
 <body>
 
 <nav id="main-nav-bar" class="flex-center">
-    <a href="index.html" class="nav-container" id="nav-con-1">
+    <a href="/" class="nav-container" id="nav-con-1">
         <img src="public/imgs/logos/logo-01.png" alt="">
     </a>
     <div class="nav-container flex-center" id="nav-con-2">
-        <a href="menu.html" class="nav-links">Menu</a>
+        <a class="nav-links" onclick="typeButton(null)">Menu</a>
         <a href="social.html" class="nav-links">Community</a>
         <a href="#main-footer" class="nav-links">Contact</a>
     </div>
     <div class="nav-container flex-center" id="nav-con-3">
-        <button class="nav-btn" id="profile-btn">
+        <button class="nav-btn">
             <img src="public/imgs/icons/profile-icon.png" alt="">
         </button>
         <button class="nav-btn" id="order-btn">
             <p class="nav-order-count">0</p>
             <img src="public/imgs/icons/cart-icon.png" alt="">
         </button>
-        <a href="register.html" id="sign-up-btn" class="flex-center">
+        <a href="register.html" id="sign-up-btn" class="flex-center" onclick="logout()">
             <img src="public/imgs/icons/sign-up-icon.png" alt="">
             <h4>Sign Up</h4>
         </a>
     </div>
 </nav>
+
+
+<header id="main-header" class="flex-center header-top">
+    <a onclick="typeButton('riceMeal')" class="header-link">Rice Meals</a>
+    <a onclick="typeButton('noodles')" class="header-link">Noodles & Pasta</a>
+    <a onclick="typeButton('snacks')" class="header-link">Snacks</a>
+    <a onclick="typeButton('desserts')" class="header-link">Desserts & Sweets</a>
+    <a onclick="typeButton('drinks')" class="header-link">Drinks & Refreshements</a>
+    <a onclick="typeButton('bakedGoods')" class="header-link">Baked Goods</a>
+</header>
+
+
+<aside id="order-side-bar">
+
+    <div id="sidebar-no-account" class="sidebar-inner flex-center hidden">
+        <h1>You’re Currently Not Signed In :(</h1>
+        <div class="sidebar-no-acc flex-center">
+            <a href="register.html" id="sidebar-sign-up">Sign Up</a>
+            <a href="login.html" id="sidebar-sign-in">Sign In</a>
+        </div>
+    </div>
+
+    <div id="sidebar-with-account" class="sidebar-inner flex-center">
+        <div class="sidebar-text-con flex-center">
+            <h2>Your Cart</h2>
+            <img src="public/imgs/icons/cart-black.png" alt="">
+        </div>
+        <div class="sidebar-order-con">
+
+
+            <div id="order-empty" class="flex-center hidden">
+                <h1>Empty :(</h1>
+                <a href="menu.html">Keep Browsing</a>
+            </div>
+
+
+            <div id="order-contains" class="flex-center">
+
+                <div class="order-con flex-center">
+
+                    <div class="order-img">
+                        <img src="public/imgs/items/placeholder.png" alt="">
+                    </div>
+
+                    <div class="order-right">
+
+                        <div class="order-text-con flex-center">
+
+                            <div class="order-details">
+
+                                <div class="order-name">
+                                    <h5>Sinangag Premium Deluxe Extreme</h5>
+                                </div>
+
+                            </div>
+
+                            <div class="order-price">
+                                <h4>₱100.00</h4>
+                            </div>
+                        </div>
+
+
+                        <div class="order-btns flex-center">
+
+                            <div class="order-quantity-btn flex-center">
+                                <button class="flex-center">+</button>
+                                <h4>1</h4>
+                                <button class="flex-center">-</button>
+                            </div>
+
+                            <div class="order-remove-btn">
+                                <button>
+                                    <img src="public/imgs/icons/delete-icon.png" alt="">
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+
+
+        </div>
+        <div class="sidebar-bottom-con flex-center">
+            <div class="no-items flex-center">
+                <h3>No. Items :</h3>
+                <h3 id="sidebar-quantity">0</h3>
+            </div>
+            <div class="total flex-center">
+                <h2>Total : </h2>
+                <h2 id="sidebar-total">₱0.00</h2>
+            </div>
+        </div>
+        <div class="sidebar-button-con flex-center">
+            <button onclick="proceedCheckOut()">
+                Proceed Check Out
+            </button>
+        </div>
+    </div>
+
+</aside>
 
 <section id="main-profile" class="flex-center">
     <div class="modal flex-center">
@@ -51,9 +157,11 @@
     </div>
 </section>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
+<script src="public/js/script.js"></script>
 <script>
     document.addEventListener("DOMContentLoaded", async () => {
-      // Get ID from URL (?id=3)
 
       const params = new URLSearchParams(window.location.search);
       const userId = params.get("id");
@@ -72,11 +180,9 @@
         const likes = await fetch(`http://localhost:8090/api/likes/user/${userId}`);
         const likedFoods = await likes.json();
 
-        // Update profile info
         document.querySelector(".profile-img img").src = user.profileImageUrl || "public/imgs/profile/placeholder.png";
         document.querySelector(".profile-name .value").textContent = user.name;
 
-        // Update liked foods
         const list = document.getElementById("liked-foods-list");
         list.innerHTML = "";
 
@@ -96,7 +202,6 @@
       }
     });
 
-    // When clicking profile icon -> go to logged-in user’s profile
     document.getElementById("profile-btn").addEventListener("click", () => {
       const user = JSON.parse(localStorage.getItem("loggedUser"));
       if (user) {

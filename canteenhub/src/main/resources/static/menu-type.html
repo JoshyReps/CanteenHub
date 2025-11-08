@@ -13,7 +13,7 @@
 <body>
 
 <nav id="main-nav-bar" class="flex-center">
-    <a href="index.html" class="nav-container" id="nav-con-1">
+    <a href="/" class="nav-container" id="nav-con-1">
         <img src="public/imgs/logos/logo-01.png" alt="">
     </a>
     <div class="nav-container flex-center" id="nav-con-2">
@@ -38,14 +38,13 @@
 
 
 <header id="main-header" class="flex-center header-top">
-    <a href="" class="header-link">Rice Meals</a>
-    <a href="" class="header-link">Noodles & Pasta</a>
-    <a href="" class="header-link">Snacks</a>
-    <a href="" class="header-link">Desserts & Sweets</a>
-    <a href="" class="header-link">Drinks & Refreshements</a>
-    <a href="" class="header-link">Baked Goods</a>
+    <a onclick="typeButton('riceMeal')" class="header-link">Rice Meals</a>
+    <a onclick="typeButton('noodles')" class="header-link">Noodles & Pasta</a>
+    <a onclick="typeButton('snacks')" class="header-link">Snacks</a>
+    <a onclick="typeButton('desserts')" class="header-link">Desserts & Sweets</a>
+    <a onclick="typeButton('drinks')" class="header-link">Drinks & Refreshements</a>
+    <a onclick="typeButton('bakedGoods')" class="header-link">Baked Goods</a>
 </header>
-
 
 
 <aside id="order-side-bar">
@@ -393,7 +392,6 @@
       let filteredItems = [];
       let likedIds = [];
 
-      // --- Update banner based on type ---
       function updateBanner() {
         const bannerMap = {
           riceMeal: "public/imgs/banner/riceMeal.png",
@@ -407,7 +405,6 @@
         bannerImg.src = bannerMap[currentType] || "public/imgs/banner/default.png";
       }
 
-      // --- Load items ---
       async function loadItems() {
         try {
           updateBanner();
@@ -415,12 +412,10 @@
           const response = await fetch("http://localhost:8090/api/items");
           const data = await response.json();
 
-          // Only show selected type
           allItems = currentType
             ? data.filter(item => item.type === currentType)
             : data;
 
-          // Fetch liked items for logged user
           if (loggedUser) {
             const likesRes = await fetch(`http://localhost:8090/api/likes/user/${loggedUser.id}`);
             const likedItems = await likesRes.json();
@@ -434,7 +429,6 @@
         }
       }
 
-      // --- Render items ---
       function renderItems(items) {
         menuGallery.innerHTML = "";
 
@@ -479,7 +473,6 @@
         attachLikeListeners();
       }
 
-      // --- Like button handling ---
       function attachLikeListeners() {
         document.querySelectorAll(".like-btn").forEach(btn => {
           btn.addEventListener("click", async () => {
@@ -515,7 +508,6 @@
         });
       }
 
-      // --- Filters and sorting ---
       rangeInput?.addEventListener("input", () => {
         const maxPrice = parseFloat(rangeInput.value);
         applyFilters({ maxPrice });
@@ -544,7 +536,6 @@
         });
       });
 
-      // --- Filter + Sort Logic ---
       async function applyFilters({ sortType, query, maxPrice } = {}) {
         let result = [...allItems];
 
@@ -578,35 +569,33 @@
                 result = result.filter(i => i.likedByUser);
               }
               break;
-          }
+            }
         }
 
-        renderItems(result);
-      }
-
-      // --- Helpers ---
-      function formatType(type) {
-        switch (type) {
-          case "riceMeal": return "Rice Meal";
-          case "noodles": return "Noodles & Pasta";
-          case "snacks": return "Snacks";
-          case "desserts": return "Desserts & Sweets";
-          case "drinks": return "Drinks & Refreshments";
-          case "bakedGoods": return "Baked Goods";
-          default: return type;
+            renderItems(result);
         }
-      }
 
-      function safeJSONParse(str, fallback = null) {
-        try {
-          return JSON.parse(str);
-        } catch {
-          return fallback;
+        function formatType(type) {
+            switch (type) {
+                case "riceMeal": return "Rice Meal";
+                case "noodles": return "Noodles & Pasta";
+                case "snacks": return "Snacks";
+                case "desserts": return "Desserts & Sweets";
+                case "drinks": return "Drinks & Refreshments";
+                case "bakedGoods": return "Baked Goods";
+                default: return type;
+            }
         }
-      }
 
-      // --- Start ---
-      loadItems();
+        function safeJSONParse(str, fallback = null) {
+            try {
+                return JSON.parse(str);
+            } catch {
+                return fallback;
+            }
+        }
+
+        loadItems();
     });
 </script>
 
