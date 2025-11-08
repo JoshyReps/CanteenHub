@@ -1,0 +1,111 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@300&f[]=switzer@400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css"/>
+    <link rel="stylesheet" href="public/style.css">
+</head>
+<body>
+
+<nav id="main-nav-bar" class="flex-center">
+    <a href="index.html" class="nav-container" id="nav-con-1">
+        <img src="public/imgs/logos/logo-01.png" alt="">
+    </a>
+    <div class="nav-container flex-center" id="nav-con-2">
+        <a href="menu.html" class="nav-links">Menu</a>
+        <a href="social.html" class="nav-links">Community</a>
+        <a href="#main-footer" class="nav-links">Contact</a>
+    </div>
+    <div class="nav-container flex-center" id="nav-con-3">
+        <button class="nav-btn" id="profile-btn">
+            <img src="public/imgs/icons/profile-icon.png" alt="">
+        </button>
+        <button class="nav-btn" id="order-btn">
+            <p class="nav-order-count">0</p>
+            <img src="public/imgs/icons/cart-icon.png" alt="">
+        </button>
+        <a href="register.html" id="sign-up-btn" class="flex-center">
+            <img src="public/imgs/icons/sign-up-icon.png" alt="">
+            <h4>Sign Up</h4>
+        </a>
+    </div>
+</nav>
+
+<section id="main-profile" class="flex-center">
+    <div class="modal flex-center">
+        <div class="profile-img flex-center">
+            <img src="public/imgs/profile/placeholder.png" alt="Profile Image">
+        </div>
+        <div class="profile-name">
+            <h2 class="label">Name</h2>
+            <h2 class="value">Loading...</h2>
+        </div>
+        <div class="profile-list">
+            <h2>Favorite Foods</h2>
+            <ul id="liked-foods-list">
+                <li>Loading...</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<script>
+    document.addEventListener("DOMContentLoaded", async () => {
+      // Get ID from URL (?id=3)
+
+      const params = new URLSearchParams(window.location.search);
+      const userId = params.get("id");
+
+      if (!userId) {
+        document.querySelector(".modal").innerHTML = "<h2>User not found</h2>";
+        return;
+      }
+
+
+      try {
+        const res = await fetch(`http://localhost:8090/api/users/${userId}`);
+        if (!res.ok) throw new Error("User not found");
+        const user = await res.json();
+
+        const likes = await fetch(`http://localhost:8090/api/likes/user/${userId}`);
+        const likedFoods = await likes.json();
+
+        // Update profile info
+        document.querySelector(".profile-img img").src = user.profileImageUrl || "public/imgs/profile/placeholder.png";
+        document.querySelector(".profile-name .value").textContent = user.name;
+
+        // Update liked foods
+        const list = document.getElementById("liked-foods-list");
+        list.innerHTML = "";
+
+        if (likedFoods.length > 0) {
+          likedFoods.forEach(food => {
+            const li = document.createElement("li");
+            li.textContent = food.name;
+            list.appendChild(li);
+          });
+        } else {
+          list.innerHTML = "<li>No liked foods yet.</li>";
+        }
+
+      } catch (err) {
+        console.error("Error loading profile:", err);
+        document.querySelector(".modal").innerHTML = "<h2>Error loading profile</h2>";
+      }
+    });
+
+    // When clicking profile icon -> go to logged-in user’s profile
+    document.getElementById("profile-btn").addEventListener("click", () => {
+      const user = JSON.parse(localStorage.getItem("loggedUser"));
+      if (user) {
+        window.location.href = `profile.html?id=${user.id}`;
+      } else {
+        window.location.href = "login.html";
+      }
+    });
+</script>
+
+</body>
+</html>

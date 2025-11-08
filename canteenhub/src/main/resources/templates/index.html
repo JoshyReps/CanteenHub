@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CanteenHub</title>
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@300&f[]=switzer@400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css"/>
+    <link rel="stylesheet" href="public/style.css">
+</head>
+
+<body>
+
+<nav id="main-nav-bar" class="flex-center">
+    <a href="index.html" class="nav-container" id="nav-con-1">
+        <img src="public/imgs/logos/logo-01.png" alt="">
+    </a>
+    <div class="nav-container flex-center" id="nav-con-2">
+        <a class="nav-links" onclick="typeButton(null)">Menu</a>
+        <a href="social.html" class="nav-links">Community</a>
+        <a href="#main-footer" class="nav-links">Contact</a>
+    </div>
+    <div class="nav-container flex-center" id="nav-con-3">
+        <button class="nav-btn">
+            <img src="public/imgs/icons/profile-icon.png" alt="">
+        </button>
+        <button class="nav-btn" id="order-btn">
+            <p class="nav-order-count">0</p>
+            <img src="public/imgs/icons/cart-icon.png" alt="">
+        </button>
+        <a href="register.html" id="sign-up-btn" class="flex-center" onclick="logout()">
+            <img src="public/imgs/icons/sign-up-icon.png" alt="">
+            <h4>Sign Up</h4>
+        </a>
+    </div>
+</nav>
+
+
+<header id="main-header" class="flex-center header-top">
+    <a href="" class="header-link">Rice Meals</a>
+    <a href="" class="header-link">Noodles & Pasta</a>
+    <a href="" class="header-link">Snacks</a>
+    <a href="" class="header-link">Desserts & Sweets</a>
+    <a href="" class="header-link">Drinks & Refreshements</a>
+    <a href="" class="header-link">Baked Goods</a>
+</header>
+
+
+<aside id="order-side-bar">
+
+    <div id="sidebar-no-account" class="sidebar-inner flex-center hidden">
+        <h1>You’re Currently Not Signed In :(</h1>
+        <div class="sidebar-no-acc flex-center">
+            <a href="register.html" id="sidebar-sign-up">Sign Up</a>
+            <a href="login.html" id="sidebar-sign-in">Sign In</a>
+        </div>
+    </div>
+
+    <div id="sidebar-with-account" class="sidebar-inner flex-center">
+        <div class="sidebar-text-con flex-center">
+            <h2>Your Cart</h2>
+            <img src="public/imgs/icons/cart-black.png" alt="">
+        </div>
+        <div class="sidebar-order-con">
+
+
+            <div id="order-empty" class="flex-center hidden">
+                <h1>Empty :(</h1>
+                <a href="menu.html">Keep Browsing</a>
+            </div>
+
+
+            <div id="order-contains" class="flex-center">
+
+                <div class="order-con flex-center">
+
+                    <div class="order-img">
+                        <img src="public/imgs/items/placeholder.png" alt="">
+                    </div>
+
+                    <div class="order-right">
+
+                        <div class="order-text-con flex-center">
+
+                            <div class="order-details">
+
+                                <div class="order-name">
+                                    <h5>Sinangag Premium Deluxe Extreme</h5>
+                                </div>
+
+                            </div>
+
+                            <div class="order-price">
+                                <h4>₱100.00</h4>
+                            </div>
+                        </div>
+
+
+                        <div class="order-btns flex-center">
+
+                            <div class="order-quantity-btn flex-center">
+                                <button class="flex-center">+</button>
+                                <h4>1</h4>
+                                <button class="flex-center">-</button>
+                            </div>
+
+                            <div class="order-remove-btn">
+                                <button>
+                                    <img src="public/imgs/icons/delete-icon.png" alt="">
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+
+
+        </div>
+        <div class="sidebar-bottom-con flex-center">
+            <div class="no-items flex-center">
+                <h3>No. Items :</h3>
+                <h3 id="sidebar-quantity">0</h3>
+            </div>
+            <div class="total flex-center">
+                <h2>Total : </h2>
+                <h2 id="sidebar-total">₱0.00</h2>
+            </div>
+        </div>
+        <div class="sidebar-button-con flex-center">
+            <button onclick="proceedCheckOut()">
+                Proceed Check Out
+            </button>
+        </div>
+    </div>
+
+</aside>
+
+
+<section id="banner" class="flex-center">
+    <div class="banner-img-con flex-center">
+        <img src="public/imgs/banner/main.png" alt="">
+    </div>
+    <div class="banner-text-con flex-center">
+        <h1>"Proudly Served, Made for Every Student!"</h1>
+        <p>Discover delicious meals, snacks, and drinks made just for you fresh from your school canteen.</p>
+        <button onclick="typeButton(null)">Browse Menu</button>
+    </div>
+</section>
+
+
+<section id="categories">
+
+    <div class="cat-text-con">
+        <h1>Browse Canteen</h1>
+    </div>
+
+    <div class="cat-buttons-con flex-center">
+
+        <button class="cat-button" id="rice-meal-btn" onclick="typeButton('riceMeal')">
+            <img src="public/imgs/categories/rice-meal.png" alt="">
+            <div class="cat-absolute-con flex-center">
+                <div class="cat-details">
+                    <h2>Rice Meals</h2>
+                    <h4>Adobo, Fried Chicken, Pork Chop, Longganisa, Giniling, Menudo</h4>
+                </div>
+            </div>
+        </button>
+
+
+        <button class="cat-button" id="noodles-btn" onclick="typeButton('noodles')">
+            <img src="public/imgs/categories/noodles.png" alt="">
+            <div class="cat-absolute-con flex-center">
+                <div class="cat-details">
+                    <h2>Noodles & Pasta</h2>
+                    <h4>Spaghetti, Pancit Canton, Bihon, Sotanghon</h4>
+                </div>
+            </div>
+        </button>
+
+
+        <button class="cat-button" id="snacks-btn" onclick="typeButton('snacks')">
+            <img src="public/imgs/categories/snacks.png" alt="">
+            <div class="cat-absolute-con flex-center">
+                <div class="cat-details">
+                    <h2>Snacks</h2>
+                    <h4>Burgers, Sandwiches, Fries, Siomai, Kikiam, Fishball, Tempura</h4>
+                </div>
+            </div>
+        </button>
+
+
+        <button class="cat-button" id="desserts-btn" onclick="typeButton('desserts')">
+            <img src="public/imgs/categories/desserts.png" alt="">
+            <div class="cat-absolute-con flex-center">
+                <div class="cat-details">
+                    <h2>Desserts & Sweets</h2>
+                    <h4>Turon, Banana Cue, Leche Flan, Buko Pandan, Cupcakes</h4>
+                </div>
+            </div>
+        </button>
+
+
+        <button class="cat-button" id="drinks-btn" onclick="typeButton('drinks')">
+            <img src="public/imgs/categories/drinks.png" alt="">
+            <div class="cat-absolute-con flex-center">
+                <div class="cat-details">
+                    <h2>Drinks</h2>
+                    <h4>Iced Tea, Milo, Coffee, Fruit Juices, Bottled Water, Soft Drinks</h4>
+                </div>
+            </div>
+        </button>
+
+
+        <button class="cat-button" id="baked-goods-btn" onclick="typeButton('bakedGoods')">
+            <img src="public/imgs/categories/baked-goods.png" alt="">
+            <div class="cat-absolute-con flex-center">
+                <div class="cat-details">
+                    <h2>Baked Goods</h2>
+                    <h4>Donuts, Ensaymada, Pandesal, Cupcakes</h4>
+                </div>
+            </div>
+        </button>
+
+
+    </div>
+
+</section>
+
+
+<section id="most-likes">
+
+    <div class="most-likes-text">
+        <h1>Most Liked</h1>
+    </div>
+
+    <div class="swiper mySwiper likeSwiper">
+        <div class="swiper-wrapper" id="trend-swiper">
+
+            <!-- <div class="swiper-slide food-slide">
+              <div class="food-slide-img flex-center">
+                <img src="public/imgs/items/placeholder.png" alt="">
+              </div>
+              <div class="food-slide-bottom flex-center">
+                <div class="food-slide-text">
+                  <h5>Drinks and Refreshment</h5>
+                  <h4>Okinawa Milktea</h4>
+                  <p>From <span>₱100.00</span></p>
+                </div>
+                <div class="food-slide-btn">
+                  <button onclick="order(0)">Buy</button>
+                </div>
+              </div>
+            </div> -->
+
+            <div class="swiper-slide"></div>
+
+        </div>
+    </div>
+
+</section>
+
+
+<div class="wave flex-center">
+    <img src="public/imgs/logos/footer-cruve.png" alt="">
+</div>
+
+<footer id="main-footer" class="flex-center">
+
+    <div class="footer-img">
+        <img src="public/imgs/logos/logo-02.png" alt="">
+    </div>
+
+    <div class="footer-about flex-center">
+        <h2>CanteenHub</h2>
+        <h4>
+            CanteenHub is a smart online platform that connects students and campus canteens in one convenient place. We make ordering food faster, easier, and more organized so you can skip the lines, track your orders, and enjoy your meals hassle-free.
+        </h4>
+    </div>
+
+    <div class="footer-contacts flex-center">
+        <div class="flex-center">
+            <img src="public/imgs/icons/telephone-call.png" alt="">
+            0992-207-5335
+        </div>
+        <div class="flex-center">
+            <img src="public/imgs/icons/mail.png" alt="">
+            jreponoya_240000001805@uic.edu.ph
+        </div>
+    </div>
+
+</footer>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
+<script src="public/js/script.js"></script>
+</body>
+
+</html>

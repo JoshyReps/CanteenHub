@@ -1,0 +1,427 @@
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@300&f[]=switzer@400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css"/>
+    <link rel="stylesheet" href="public/style.css">
+</head>
+
+<body>
+
+<nav id="main-nav-bar" class="flex-center">
+    <a href="index.html" class="nav-container" id="nav-con-1">
+        <img src="public/imgs/logos/logo-01.png" alt="">
+    </a>
+    <div class="nav-container flex-center" id="nav-con-2">
+        <a href="menu.html" class="nav-links">Menu</a>
+        <a href="social.html" class="nav-links">Community</a>
+        <a href="#main-footer" class="nav-links">Contact</a>
+    </div>
+    <div class="nav-container flex-center" id="nav-con-3">
+        <button class="nav-btn">
+            <img src="public/imgs/icons/profile-icon.png" alt="">
+        </button>
+        <button class="nav-btn" id="order-btn">
+            <p class="nav-order-count">0</p>
+            <img src="public/imgs/icons/cart-icon.png" alt="">
+        </button>
+        <a href="register.html" id="sign-up-btn" class="flex-center">
+            <img src="public/imgs/icons/sign-up-icon.png" alt="">
+            <h4>Sign Up</h4>
+        </a>
+    </div>
+</nav>
+
+
+<header id="main-header" class="flex-center header-top">
+    <a href="" class="header-link">Rice Meals</a>
+    <a href="" class="header-link">Noodles & Pasta</a>
+    <a href="" class="header-link">Snacks</a>
+    <a href="" class="header-link">Desserts & Sweets</a>
+    <a href="" class="header-link">Drinks & Refreshements</a>
+    <a href="" class="header-link">Baked Goods</a>
+</header>
+
+
+<aside id="order-side-bar">
+
+    <div id="sidebar-no-account" class="sidebar-inner flex-center hidden">
+        <h1>You’re Currently Not Signed In :(</h1>
+        <div class="sidebar-no-acc flex-center">
+            <a href="register.html" id="sidebar-sign-up">Sign Up</a>
+            <a href="login.html" id="sidebar-sign-in">Sign In</a>
+        </div>
+    </div>
+
+    <div id="sidebar-with-account" class="sidebar-inner flex-center">
+        <div class="sidebar-text-con flex-center">
+            <h2>Your Cart</h2>
+            <img src="public/imgs/icons/cart-black.png" alt="">
+        </div>
+        <div class="sidebar-order-con">
+
+
+            <div id="order-empty" class="flex-center hidden">
+                <h1>Empty :(</h1>
+                <a href="menu.html">Keep Browsing</a>
+            </div>
+
+
+
+            <div id="order-contains" class="flex-center">
+
+
+                <div class="order-con flex-center">
+
+                    <div class="order-img">
+                        <img src="public/imgs/items/placeholder.png" alt="">
+                    </div>
+
+                    <div class="order-right">
+
+                        <div class="order-text-con flex-center">
+
+                            <div class="order-details">
+
+                                <div class="order-name">
+                                    <h5>Sinangag Premium Deluxe Extreme</h5>
+                                </div>
+
+                            </div>
+
+                            <div class="order-price">
+                                <h4>₱100.00</h4>
+                            </div>
+                        </div>
+
+
+                        <div class="order-btns flex-center">
+
+                            <div class="order-quantity-btn flex-center">
+                                <button class="flex-center">+</button>
+                                <h4>1</h4>
+                                <button class="flex-center">-</button>
+                            </div>
+
+                            <div class="order-remove-btn">
+                                <button>
+                                    <img src="public/imgs/icons/delete-icon.png" alt="">
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+
+
+        </div>
+        <div class="sidebar-bottom-con flex-center">
+            <div class="no-items flex-center">
+                <h3>No. Items :</h3>
+                <h3>0</h3>
+            </div>
+            <div class="total flex-center">
+                <h2>Total : </h2>
+                <h2>₱0.00</h2>
+            </div>
+        </div>
+        <div class="sidebar-button-con flex-center">
+            <button>
+                Proceed Check Out
+            </button>
+        </div>
+    </div>
+</aside>
+
+
+<div class="post-popup-mp flex-center hidden">
+    <div class="modal flex-center">
+        <img src="public/imgs/items/placeholder.png" alt="" id="preview-img-mp">
+        <input type="file" accept="image/*" id="post-file-mp">
+        <button onclick="postExit()">Done</button>
+    </div>
+</div>
+
+
+<section id="social" class="flex-center">
+
+    <div class="social-side-bar flex-center">
+        <div class="social-sb-img flex-center">
+            <img src="public/imgs/logos/logo-03.png" alt="">
+        </div>
+        <button class="flex-center">
+            <img src="public/imgs/icons/home-icon.png" alt="">
+            <h2>Home</h2>
+        </button>
+        <button class="flex-center">
+            <img src="public/imgs/icons/post-icon.png" alt="">
+            <h2>Post</h2>
+        </button>
+        <button class="flex-center">
+            <img src="public/imgs/icons/community-icon.png" alt="">
+            <h2>Community</h2>
+        </button>
+    </div>
+
+    <div class="social-post-con">
+
+        <!-- <div class="post-btns-pages flex-center">
+            <a href="">
+                <h3>Community</h3>
+            </a>
+            <a href="">
+                <h3>Your Post</h3>
+            </a>
+        </div> -->
+
+        <div class="post-top-mp flex-center">
+
+            <div class="post-profile-mp">
+                <img src="public/imgs/profile/placeholder.png" alt="">
+            </div>
+
+            <div class="post-text-mp">
+
+                <div class="post-title-mp">
+                    <input type="text" placeholder="Share your Meal">
+                </div>
+
+                <div class="post-buttons-mp flex-center">
+
+                    <button class="img-btn" onclick="postPopup()">
+                        <img class="img-btn-img" src="public/imgs/icons/image-icon.png" alt="">
+                    </button>
+
+                    <button class="post-btn">
+                        Post
+                    </button>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+    </div>
+
+    <div class="social-online-bar flex-center">
+
+        <div class="social-search-con">
+            <input type="search" placeholder="Search users..." id="user-search">
+        </div>
+
+<!--        <button class="profile-item flex-center">-->
+<!--            <div class="profile-img">-->
+<!--                <img src="public/imgs/profile/placeholder.png" alt="">-->
+<!--            </div>-->
+<!--            <div>-->
+<!--                <h4>Joshua M. Reponoya</h4>-->
+<!--            </div>-->
+<!--        </button>-->
+
+        <div id="online-users" class="flex-center">
+
+
+        </div>
+
+
+
+
+    </div>
+
+</section>
+
+
+
+
+
+
+<div class="wave flex-center">
+    <img src="public/imgs/logos/footer-cruve.png" alt="">
+</div>
+
+<footer id="main-footer" class="flex-center">
+
+    <div class="footer-img">
+        <img src="public/imgs/logos/logo-02.png" alt="">
+    </div>
+
+    <div class="footer-about flex-center">
+        <h2>CanteenHub</h2>
+        <h4>
+            CanteenHub is a smart online platform that connects students and campus canteens in one convenient place. We make ordering food faster, easier, and more organized so you can skip the lines, track your orders, and enjoy your meals hassle-free.
+        </h4>
+    </div>
+
+    <div class="footer-contacts flex-center">
+        <div class="flex-center">
+            <img src="public/imgs/icons/telephone-call.png" alt="">
+            0992-207-5335
+        </div>
+        <div class="flex-center">
+            <img src="public/imgs/icons/mail.png" alt="">
+            jreponoya_240000001805@uic.edu.ph
+        </div>
+    </div>
+
+</footer>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
+<script src="public/js/script.js"></script>
+<script>
+    async function loadPosts() {
+        try {
+            const res = await fetch("http://localhost:8090/api/posts");
+            if (!res.ok) {
+                alert("Error fetching posts");
+                return;
+            }
+
+            const posts = (await res.json()).slice().reverse();
+            const postCon = document.querySelector(".social-post-con");
+
+            // Loop through each post
+            for (const post of posts) {
+
+                // Fetch the user info based on userId
+
+                // Create post HTML
+                const postItem = document.createElement("div");
+                postItem.classList.add("posts-item", "flex-center");
+
+                postItem.innerHTML = `
+                    <div class="posts-con flex-center">
+                        <div class="post-profile-mp">
+                            <img src="public/imgs/profile/placeholder.png" alt="">
+                        </div>
+                        <div class="post-details flex-center">
+                            <div class="post-account-info flex-center">
+                                <h4>${post.userId.name}</h4>
+<!--                                <h4>11:00pm</h4>-->
+                            </div>
+                            <div class="post-title">
+                                <h3>${post.title}</h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="post-img flex-center">
+                        <img src="${post.imgUrl}" alt="">
+                    </div>
+                `;
+
+                postCon.append(postItem);
+            }
+        } catch (err) {
+            console.error(err);
+            alert("Something went wrong while loading posts");
+        }
+    }
+
+    document.addEventListener("DOMContentLoaded", loadPosts);
+
+
+    let selectedFile = null;
+
+document.getElementById("post-file-mp").addEventListener("change", function (e) {
+    selectedFile = e.target.files[0];
+});
+
+document.querySelector(".post-btn").addEventListener("click", async () => {
+    const titleInput = document.querySelector(".post-title-mp input");
+    const title = titleInput.value.trim();
+
+    if (!title) {
+        alert("Please enter a post title.");
+        return;
+    }
+
+    const loggedUser = JSON.parse(localStorage.getItem("loggedUser"));
+    const userId = loggedUser ? loggedUser.id : null;
+
+    const formData = new FormData();
+    formData.append("title", title);
+    formData.append("userId", userId);
+    if (selectedFile) formData.append("image", selectedFile);
+
+    try {
+        const res = await fetch("http://localhost:8090/api/posts/upload", {
+            method: "POST",
+            body: formData
+        });
+
+        if (!res.ok) {
+            alert("Failed to upload post");
+            return;
+        }
+
+        alert("Post uploaded successfully!");
+        titleInput.value = "";
+        selectedFile = null;
+    } catch (err) {
+        console.error(err);
+        alert("Error uploading post");
+    }
+});
+
+async function loadUsers() {
+    try {
+        const res = await fetch("http://localhost:8090/api/users");
+        if (!res.ok) throw new Error("Failed to fetch users");
+
+        const users = await res.json();
+        const container = document.getElementById("online-users");
+        const searchInput = document.getElementById("user-search");
+
+        function displayUsers(filter = "") {
+            container.innerHTML = "";
+            users
+                .filter(u => u.name.toLowerCase().includes(filter.toLowerCase()))
+                .forEach(user => {
+                    const userBtn = document.createElement("button");
+                    userBtn.classList.add("profile-item", "flex-center");
+                    userBtn.innerHTML = `
+                        <div class="profile-img">
+                            <img src="public/imgs/profile/placeholder.png" alt="">
+                        </div>
+                        <div class="profile-name-div">
+                            <h4>${user.name}</h4>
+                        </div>
+                    `;
+                    // 👇 When clicked, go to that user’s profile
+                    userBtn.addEventListener("click", () => {
+                        window.location.href = `profile.html?id=${user.id}`;
+                    });
+
+                    container.appendChild(userBtn);
+                });
+        }
+
+        displayUsers();
+
+        searchInput.addEventListener("input", (e) => {
+            displayUsers(e.target.value);
+        });
+
+    } catch (err) {
+        console.error(err);
+    }
+}
+
+document.addEventListener("DOMContentLoaded", loadUsers);
+
+
+</script>
+
+</body>
+
+</html>

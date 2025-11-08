@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@300&f[]=switzer@400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css"/>
+    <link rel="stylesheet" href="public/style.css">
+</head>
+
+<body>
+
+<nav id="main-nav-bar" class="flex-center">
+    <a href="index.html" class="nav-container" id="nav-con-1">
+        <img src="public/imgs/logos/logo-01.png" alt="">
+    </a>
+    <div class="nav-container flex-center" id="nav-con-2">
+        <a href="menu.html" class="nav-links">Menu</a>
+        <a href="social.html" class="nav-links">Community</a>
+        <a href="#main-footer" class="nav-links">Contact</a>
+    </div>
+    <div class="nav-container flex-center" id="nav-con-3">
+        <button class="nav-btn">
+            <img src="public/imgs/icons/profile-icon.png" alt="">
+        </button>
+        <button class="nav-btn" id="order-btn">
+            <p class="nav-order-count">0</p>
+            <img src="public/imgs/icons/cart-icon.png" alt="">
+        </button>
+        <a href="register.html" id="sign-up-btn" class="flex-center">
+            <img src="public/imgs/icons/sign-up-icon.png" alt="">
+            <h4>Sign Up</h4>
+        </a>
+    </div>
+</nav>
+
+<div id="admin-main" class="flex-center">
+
+    <div id="admin-side-bar" class="flex-center">
+        <h1>Admin Controls</h1>
+        <a href="adminStock.html" class="admin-link-con flex-center">
+            <img src="public/imgs/icons/box.png" alt="">
+            <h3>Manage Stocks</h3>
+        </a>
+        <a href="admin.html" class="admin-link-con flex-center">
+            <img src="public/imgs/icons/trend.png" alt="">
+            <h3>Sales Summary</h3>
+        </a>
+        <a href="" class="admin-link-con flex-center">
+            <img src="public/imgs/icons/manager.png" alt="">
+            <h3>View Accounts</h3>
+        </a>
+        <!-- <div class="flex-center admin-side-footer">
+            <h3>@2025 CanteenHub</h3>
+        </div> -->
+    </div>
+
+
+    <div id="admin-stock" class="hidden">
+
+        <div class="stock-card">
+            <div class="stock-img flex-center">
+                <img src="public/imgs/items/placeholder.png" alt="">
+            </div>
+            <div class="stock-text-con flex-center">
+                <div class="stock-details">
+                    <div class="stock-name">
+                        <h5>Sinangag Premium</h5>
+                    </div>
+                    <div class="stock-type">
+                        <h6>Drinks</h6>
+                    </div>
+                </div>
+                <div class="stock-price">
+                    <p>₱100.00</p>
+                </div>
+            </div>
+            <div class="stock-btn flex-center">
+                <button>Stocked</button>
+            </div>
+        </div>
+
+
+        <div class="stock-card">
+            <div class="stock-img flex-center">
+                <img src="public/imgs/items/placeholder.png" alt="">
+            </div>
+            <div class="stock-text-con flex-center">
+                <div class="stock-details">
+                    <div class="stock-name">
+                        <h5>Sinangag Premium</h5>
+                    </div>
+                    <div class="stock-type">
+                        <h6>Drinks</h6>
+                    </div>
+                </div>
+                <div class="stock-price">
+                    <p>₱100.00</p>
+                </div>
+            </div>
+            <div class="stock-btn flex-center">
+                <button>Stocked</button>
+            </div>
+        </div>
+
+
+
+        <div class="stock-card">
+            <div class="stock-img flex-center">
+                <img src="public/imgs/items/placeholder.png" alt="">
+            </div>
+            <div class="stock-text-con flex-center">
+                <div class="stock-details">
+                    <div class="stock-name">
+                        <h5>Sinangag Premium</h5>
+                    </div>
+                    <div class="stock-type">
+                        <h6>Drinks</h6>
+                    </div>
+                </div>
+                <div class="stock-price">
+                    <p>₱100.00</p>
+                </div>
+            </div>
+            <div class="stock-btn flex-center">
+                <button>Stocked</button>
+            </div>
+        </div>
+
+
+
+
+        <div class="stock-card">
+            <div class="stock-img flex-center">
+                <img src="public/imgs/items/placeholder.png" alt="">
+            </div>
+            <div class="stock-text-con flex-center">
+                <div class="stock-details">
+                    <div class="stock-name">
+                        <h5>Sinangag Premium</h5>
+                    </div>
+                    <div class="stock-type">
+                        <h6>Drinks</h6>
+                    </div>
+                </div>
+                <div class="stock-price">
+                    <p>₱100.00</p>
+                </div>
+            </div>
+            <div class="stock-btn flex-center">
+                <button>Stocked</button>
+            </div>
+        </div>
+
+
+
+
+        <div class="stock-card">
+            <div class="stock-img flex-center">
+                <img src="public/imgs/items/placeholder.png" alt="">
+            </div>
+            <div class="stock-text-con flex-center">
+                <div class="stock-details">
+                    <div class="stock-name">
+                        <h5>Sinangag Premium</h5>
+                    </div>
+                    <div class="stock-type">
+                        <h6>Drinks</h6>
+                    </div>
+                </div>
+                <div class="stock-price">
+                    <p>₱100.00</p>
+                </div>
+            </div>
+            <div class="stock-btn flex-center">
+                <button>Stocked</button>
+            </div>
+        </div>
+
+
+
+        <div class="stock-card">
+            <div class="stock-img flex-center">
+                <img src="public/imgs/items/placeholder.png" alt="">
+            </div>
+            <div class="stock-text-con flex-center">
+                <div class="stock-details">
+                    <div class="stock-name">
+                        <h5>Sinangag Premium</h5>
+                    </div>
+                    <div class="stock-type">
+                        <h6>Drinks</h6>
+                    </div>
+                </div>
+                <div class="stock-price">
+                    <p>₱100.00</p>
+                </div>
+            </div>
+            <div class="stock-btn flex-center">
+                <button>Stocked</button>
+            </div>
+        </div>
+
+
+
+        <div class="stock-card">
+            <div class="stock-img flex-center">
+                <img src="public/imgs/items/placeholder.png" alt="">
+            </div>
+            <div class="stock-text-con flex-center">
+                <div class="stock-details">
+                    <div class="stock-name">
+                        <h5>Sinangag Premium</h5>
+                    </div>
+                    <div class="stock-type">
+                        <h6>Drinks</h6>
+                    </div>
+                </div>
+                <div class="stock-price">
+                    <p>₱100.00</p>
+                </div>
+            </div>
+            <div class="stock-btn flex-center">
+                <button>Stocked</button>
+            </div>
+        </div>
+
+
+
+        <div class="stock-card">
+            <div class="stock-img flex-center">
+                <img src="public/imgs/items/placeholder.png" alt="">
+            </div>
+            <div class="stock-text-con flex-center">
+                <div class="stock-details">
+                    <div class="stock-name">
+                        <h5>Sinangag Premium</h5>
+                    </div>
+                    <div class="stock-type">
+                        <h6>Drinks</h6>
+                    </div>
+                </div>
+                <div class="stock-price">
+                    <p>₱100.00</p>
+                </div>
+            </div>
+            <div class="stock-btn flex-center">
+                <button>Stocked</button>
+            </div>
+        </div>
+
+
+
+        <div class="stock-card">
+            <div class="stock-img flex-center">
+                <img src="public/imgs/items/placeholder.png" alt="">
+            </div>
+            <div class="stock-text-con flex-center">
+                <div class="stock-details">
+                    <div class="stock-name">
+                        <h5>Sinangag Premium</h5>
+                    </div>
+                    <div class="stock-type">
+                        <h6>Drinks</h6>
+                    </div>
+                </div>
+                <div class="stock-price">
+                    <p>₱100.00</p>
+                </div>
+            </div>
+            <div class="stock-btn flex-center">
+                <button>Stocked</button>
+            </div>
+        </div>
+
+
+
+        <div class="stock-card">
+            <div class="stock-img flex-center">
+                <img src="public/imgs/items/placeholder.png" alt="">
+            </div>
+            <div class="stock-text-con flex-center">
+                <div class="stock-details">
+                    <div class="stock-name">
+                        <h5>Sinangag Premium</h5>
+                    </div>
+                    <div class="stock-type">
+                        <h6>Drinks</h6>
+                    </div>
+                </div>
+                <div class="stock-price">
+                    <p>₱100.00</p>
+                </div>
+            </div>
+            <div class="stock-btn flex-center">
+                <button>Stocked</button>
+            </div>
+        </div>
+
+
+
+        <div class="stock-card">
+            <div class="stock-img flex-center">
+                <img src="public/imgs/items/placeholder.png" alt="">
+            </div>
+            <div class="stock-text-con flex-center">
+                <div class="stock-details">
+                    <div class="stock-name">
+                        <h5>Sinangag Premium</h5>
+                    </div>
+                    <div class="stock-type">
+                        <h6>Drinks</h6>
+                    </div>
+                </div>
+                <div class="stock-price">
+                    <p>₱100.00</p>
+                </div>
+            </div>
+            <div class="stock-btn flex-center">
+                <button>Stocked</button>
+            </div>
+        </div>
+
+
+
+        <div class="stock-card">
+            <div class="stock-img flex-center">
+                <img src="public/imgs/items/placeholder.png" alt="">
+            </div>
+            <div class="stock-text-con flex-center">
+                <div class="stock-details">
+                    <div class="stock-name">
+                        <h5>Sinangag Premium</h5>
+                    </div>
+                    <div class="stock-type">
+                        <h6>Drinks</h6>
+                    </div>
+                </div>
+                <div class="stock-price">
+                    <p>₱100.00</p>
+                </div>
+            </div>
+            <div class="stock-btn flex-center">
+                <button>Stocked</button>
+            </div>
+        </div>
+
+
+
+        <div class="stock-card">
+            <div class="stock-img flex-center">
+                <img src="public/imgs/items/placeholder.png" alt="">
+            </div>
+            <div class="stock-text-con flex-center">
+                <div class="stock-details">
+                    <div class="stock-name">
+                        <h5>Sinangag Premium</h5>
+                    </div>
+                    <div class="stock-type">
+                        <h6>Drinks</h6>
+                    </div>
+                </div>
+                <div class="stock-price">
+                    <p>₱100.00</p>
+                </div>
+            </div>
+            <div class="stock-btn flex-center">
+                <button>Stocked</button>
+            </div>
+        </div>
+
+
+
+        <div class="stock-card">
+            <div class="stock-img flex-center">
+                <img src="public/imgs/items/placeholder.png" alt="">
+            </div>
+            <div class="stock-text-con flex-center">
+                <div class="stock-details">
+                    <div class="stock-name">
+                        <h5>Sinangag Premium</h5>
+                    </div>
+                    <div class="stock-type">
+                        <h6>Drinks</h6>
+                    </div>
+                </div>
+                <div class="stock-price">
+                    <p>₱100.00</p>
+                </div>
+            </div>
+            <div class="stock-btn flex-center">
+                <button>Stocked</button>
+            </div>
+        </div>
+
+
+        <div class="stock-card">
+            <div class="stock-img flex-center">
+                <img src="public/imgs/items/placeholder.png" alt="">
+            </div>
+            <div class="stock-text-con flex-center">
+                <div class="stock-details">
+                    <div class="stock-name">
+                        <h5>Sinangag Premium</h5>
+                    </div>
+                    <div class="stock-type">
+                        <h6>Drinks</h6>
+                    </div>
+                </div>
+                <div class="stock-price">
+                    <p>₱100.00</p>
+                </div>
+            </div>
+            <div class="stock-btn flex-center">
+                <button>Stocked</button>
+            </div>
+        </div>
+
+
+
+        <div class="stock-card">
+            <div class="stock-img flex-center">
+                <img src="public/imgs/items/placeholder.png" alt="">
+            </div>
+            <div class="stock-text-con flex-center">
+                <div class="stock-details">
+                    <div class="stock-name">
+                        <h5>Sinangag Premium</h5>
+                    </div>
+                    <div class="stock-type">
+                        <h6>Drinks</h6>
+                    </div>
+                </div>
+                <div class="stock-price">
+                    <p>₱100.00</p>
+                </div>
+            </div>
+            <div class="stock-btn flex-center">
+                <button>Stocked</button>
+            </div>
+        </div>
+
+    </div>
+
+
+
+    <div id="admin-sales" class="flex-center">
+
+
+        <div class="admin-order">
+
+            <div class="admin-order-header flex-center order">
+                <div class="email">
+                    Email
+                </div>
+                <div class="time">
+                    Time Created
+                </div>
+                <div class="items">
+                    Items
+                </div>
+                <div class="total">
+                    Total
+                </div>
+                <div class="status">
+                    Status
+                </div>
+            </div>
+
+
+
+            <!-- <div id="admin-stocks" class="hidden">
+
+            </div> -->
+
+
+        </div>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
+        <script src="public/js/script.js"></script>
+        <script>
+            async function loadOrders() {
+                try {
+                    const res = await fetch("http://localhost:8090/api/orders");
+                    if (!res.ok) throw new Error("Failed to fetch orders");
+                    const data = await res.json();
+
+                    const adminSales = document.querySelector("#admin-sales .admin-order");
+                    adminSales.innerHTML = "";
+
+                    // Group by user email
+                    const grouped = {};
+                    data.forEach(order => {
+                        const email = order.userId?.email || "Unknown";
+                        if (!grouped[email]) grouped[email] = [];
+                        grouped[email].push(order);
+                    });
+
+                    Object.entries(grouped).forEach(([email, orders]) => {
+                        const totalItems = orders.reduce((sum, o) => sum + o.quantity, 0);
+                        const totalCost = orders.reduce((sum, o) => sum + o.cost, 0);
+                        const lastOrderTime = new Date(orders[orders.length - 1].time).toLocaleString();
+
+                        const status = orders.some(o => o.status === "pending") ? "pending" : "done";
+
+                        const orderDiv = document.createElement("div");
+                        orderDiv.classList.add("order-item", "flex-center");
+
+                        orderDiv.innerHTML = `
+                            <div class="flex-center order">
+                                <div class="email">${email}</div>
+                                <div class="time">${lastOrderTime}</div>
+                                <div class="items">${totalItems}</div>
+                                <div class="total">₱${totalCost.toFixed(2)}</div>
+                                <div class="status">
+                                    <button
+                                        class="status-btn ${status === "pending" ? "pending-color" : "done-color"}"
+                                        data-status="${status}"
+                                        data-ids='${JSON.stringify(orders.map(o => o.id))}'
+                                    >
+                                        ${status.charAt(0).toUpperCase() + status.slice(1)}
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="order-list flex-center">
+                                Item's Bought :
+                                <ul>
+                                    ${orders.map(o => `
+                                        <li>${o.itemId?.name || "Unknown Item"} x${o.quantity}</li>
+                                    `).join("")}
+                                </ul>
+                                <div class="items text flex-center">
+                                    <h5 class="label">No. Items:</h5>
+                                    <h5 class="value">${totalItems}</h5>
+                                </div>
+                                <div class="values text flex-center">
+                                    <h4 class="label">Total:</h4>
+                                    <h4 class="value">₱${totalCost.toFixed(2)}</h4>
+                                </div>
+                            </div>
+                        `;
+
+                        adminSales.appendChild(orderDiv);
+                    });
+
+                } catch (err) {
+                    console.error("Error fetching orders:", err);
+                }
+            }
+
+
+            // 🗑️ Delete order(s) when Pending button is clicked
+            document.addEventListener("click", async (e) => {
+                const btn = e.target.closest(".status-btn");
+                if (!btn) return;
+
+                const currentStatus = btn.dataset.status;
+                const orderIds = JSON.parse(btn.dataset.ids);
+                const orderItem = btn.closest(".order-item");
+
+                if (currentStatus === "pending") {
+                    if (!confirm("Confirm this order?")) return;
+
+                    // delete all related orders
+                    for (const id of orderIds) {
+                        try {
+                            const res = await fetch(`http://localhost:8090/api/orders/${id}`, {
+                                method: "DELETE"
+                            });
+                            if (res.ok) console.log(`✅ Order ${id} deleted`);
+                            else console.error(`❌ Failed to delete order ${id}`);
+                        } catch (err) {
+                            console.error(err);
+                        }
+                    }
+
+                    // Remove the element visually
+                    orderItem.style.transition = "opacity 0.3s ease";
+                    orderItem.style.opacity = "0";
+                    setTimeout(() => orderItem.remove(), 300);
+                }
+            });
+
+            document.addEventListener("DOMContentLoaded", loadOrders);
+        </script>
+
+</body>
+
+</html>

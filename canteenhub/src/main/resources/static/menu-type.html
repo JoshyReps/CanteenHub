@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@300&f[]=switzer@400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css"/>
+    <link rel="stylesheet" href="public/style.css">
+</head>
+
+<body>
+
+<nav id="main-nav-bar" class="flex-center">
+    <a href="index.html" class="nav-container" id="nav-con-1">
+        <img src="public/imgs/logos/logo-01.png" alt="">
+    </a>
+    <div class="nav-container flex-center" id="nav-con-2">
+        <a class="nav-links" onclick="typeButton(null)">Menu</a>
+        <a href="social.html" class="nav-links">Community</a>
+        <a href="#main-footer" class="nav-links">Contact</a>
+    </div>
+    <div class="nav-container flex-center" id="nav-con-3">
+        <button class="nav-btn">
+            <img src="public/imgs/icons/profile-icon.png" alt="">
+        </button>
+        <button class="nav-btn" id="order-btn">
+            <p class="nav-order-count">0</p>
+            <img src="public/imgs/icons/cart-icon.png" alt="">
+        </button>
+        <a href="register.html" id="sign-up-btn" class="flex-center">
+            <img src="public/imgs/icons/sign-up-icon.png" alt="">
+            <h4>Sign Up</h4>
+        </a>
+    </div>
+</nav>
+
+
+<header id="main-header" class="flex-center header-top">
+    <a href="" class="header-link">Rice Meals</a>
+    <a href="" class="header-link">Noodles & Pasta</a>
+    <a href="" class="header-link">Snacks</a>
+    <a href="" class="header-link">Desserts & Sweets</a>
+    <a href="" class="header-link">Drinks & Refreshements</a>
+    <a href="" class="header-link">Baked Goods</a>
+</header>
+
+
+
+<aside id="order-side-bar">
+
+    <div id="sidebar-no-account" class="sidebar-inner flex-center hidden">
+        <h1>You’re Currently Not Signed In :(</h1>
+        <div class="sidebar-no-acc flex-center">
+            <a href="register.html" id="sidebar-sign-up">Sign Up</a>
+            <a href="login.html" id="sidebar-sign-in">Sign In</a>
+        </div>
+    </div>
+
+    <div id="sidebar-with-account" class="sidebar-inner flex-center">
+        <div class="sidebar-text-con flex-center">
+            <h2>Your Cart</h2>
+            <img src="public/imgs/icons/cart-black.png" alt="">
+        </div>
+        <div class="sidebar-order-con">
+
+
+            <div id="order-empty" class="flex-center hidden">
+                <h1>Empty :(</h1>
+                <a href="menu.html">Keep Browsing</a>
+            </div>
+
+
+
+            <div id="order-contains" class="flex-center">
+
+
+                <div class="order-con flex-center">
+
+                    <div class="order-img">
+                        <img src="public/imgs/items/placeholder.png" alt="">
+                    </div>
+
+                    <div class="order-right">
+
+                        <div class="order-text-con flex-center">
+
+                            <div class="order-details">
+
+                                <div class="order-name">
+                                    <h5>Sinangag Premium Deluxe Extreme</h5>
+                                </div>
+
+                            </div>
+
+                            <div class="order-price">
+                                <h4>₱100.00</h4>
+                            </div>
+                        </div>
+
+
+                        <div class="order-btns flex-center">
+
+                            <div class="order-quantity-btn flex-center">
+                                <button class="flex-center">+</button>
+                                <h4>1</h4>
+                                <button class="flex-center">-</button>
+                            </div>
+
+                            <div class="order-remove-btn">
+                                <button>
+                                    <img src="public/imgs/icons/delete-icon.png" alt="">
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+
+
+        </div>
+        <div class="sidebar-bottom-con flex-center">
+            <div class="no-items flex-center">
+                <h3>No. Items :</h3>
+                <h3 id="sidebar-quantity">0</h3>
+            </div>
+            <div class="total flex-center">
+                <h2>Total : </h2>
+                <h2 id="sidebar-total">₱0.00</h2>
+            </div>
+        </div>
+        <div class="sidebar-button-con flex-center">
+            <button onclick="proceedCheckOut()">
+                Proceed Check Out
+            </button>
+        </div>
+    </div>
+
+</aside>
+
+
+
+<section id="menu-banner">
+    <div class="swiper-slide gallery-banner-slide">
+        <img id="banner-type-img" src="public/imgs/banner/riceMeal.png" alt="">
+    </div>
+</section>
+
+
+<section id="menu-gallery" class="flex-center">
+
+    <div class="menu-input-con flex-center">
+        <div class="menu-input-inner inner-1 flex-center">
+            <div class="menu-range-con">
+                <span class="label">₱50</span>
+                <input type="range" min="50" max="1000" value="200" class="slider" id="priceRange">
+                <span class="label">₱1000</span>
+            </div>
+            <div class="menu-sort-con flex-center">
+                <h4>Sort By:</h4>
+                <button class="sort-btn" data-sort="az">Name A–Z</button>
+                <button class="sort-btn" data-sort="za">Name Z–A</button>
+                <button class="sort-btn" data-sort="cheap">Least Expensive</button>
+                <button class="sort-btn" data-sort="liked">Liked Foods</button>
+            </div>
+        </div>
+
+        <div class="menu-input-inner inner-2">
+            <div class="menu-search-con flex-center">
+                <input type="search" id="menuSearch" placeholder="Search foods...">
+                <button id="searchBtn">
+                    <img src="public/imgs/icons/search.png" alt="">
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="menu-gallery-con">
+
+        <div class="gallery-item-con">
+            <button class="gallery-overlay flex-center" onclick="order(0)">
+                <h2>*Tap to Order*</h2>
+            </button>
+            <div class="gallery-overlay-btn">
+                <button>
+                    <img src="public/imgs/icons/like.png" alt="">
+                </button>
+                <button>
+                    <img src="public/imgs/icons/dislike.png" alt="">
+                </button>
+            </div>
+            <div class="gallery-img-con">
+                <img src="public/imgs/items/placeholder.png" alt="">
+            </div>
+            <div class="gallery-bottom-con flex-center">
+                <div class="gallery-text-con flex-center">
+                    <h4>Milk Tea Caramel Deluxe</h4>
+                    <h5>Drinks & Refreshment</h5>
+                </div>
+                <div class="gallery-price-con">
+                    <p>₱100.00</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="gallery-item-con">
+            <button class="gallery-overlay flex-center" onclick="order(0)">
+                <h2>*Tap to Order*</h2>
+            </button>
+            <div class="gallery-overlay-btn">
+                <button>
+                    <img src="public/imgs/icons/like.png" alt="">
+                </button>
+                <button>
+                    <img src="public/imgs/icons/dislike.png" alt="">
+                </button>
+            </div>
+            <div class="gallery-img-con">
+                <img src="public/imgs/items/placeholder.png" alt="">
+            </div>
+            <div class="gallery-bottom-con flex-center">
+                <div class="gallery-text-con flex-center">
+                    <h4>Milk Tea Caramel Deluxe</h4>
+                    <h5>Drinks & Refreshment</h5>
+                </div>
+                <div class="gallery-price-con">
+                    <p>₱100.00</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="gallery-item-con">
+            <button class="gallery-overlay flex-center" onclick="order(0)">
+                <h2>*Tap to Order*</h2>
+            </button>
+            <div class="gallery-overlay-btn">
+                <button>
+                    <img src="public/imgs/icons/like.png" alt="">
+                </button>
+                <button>
+                    <img src="public/imgs/icons/dislike.png" alt="">
+                </button>
+            </div>
+            <div class="gallery-img-con">
+                <img src="public/imgs/items/placeholder.png" alt="">
+            </div>
+            <div class="gallery-bottom-con flex-center">
+                <div class="gallery-text-con flex-center">
+                    <h4>Milk Tea Caramel Deluxe</h4>
+                    <h5>Drinks & Refreshment</h5>
+                </div>
+                <div class="gallery-price-con">
+                    <p>₱100.00</p>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="gallery-item-con">
+            <button class="gallery-overlay flex-center" onclick="order(0)">
+                <h2>*Tap to Order*</h2>
+            </button>
+            <div class="gallery-overlay-btn">
+                <button>
+                    <img src="public/imgs/icons/like.png" alt="">
+                </button>
+                <button>
+                    <img src="public/imgs/icons/dislike.png" alt="">
+                </button>
+            </div>
+            <div class="gallery-img-con">
+                <img src="public/imgs/items/placeholder.png" alt="">
+            </div>
+            <div class="gallery-bottom-con flex-center">
+                <div class="gallery-text-con flex-center">
+                    <h4>Milk Tea Caramel Deluxe</h4>
+                    <h5>Drinks & Refreshment</h5>
+                </div>
+                <div class="gallery-price-con">
+                    <p>₱100.00</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="gallery-item-con">
+            <button class="gallery-overlay flex-center" onclick="order(0)">
+                <h2>*Tap to Order*</h2>
+            </button>
+            <div class="gallery-overlay-btn">
+                <button>
+                    <img src="public/imgs/icons/like.png" alt="">
+                </button>
+                <button>
+                    <img src="public/imgs/icons/dislike.png" alt="">
+                </button>
+            </div>
+            <div class="gallery-img-con">
+                <img src="public/imgs/items/placeholder.png" alt="">
+            </div>
+            <div class="gallery-bottom-con flex-center">
+                <div class="gallery-text-con flex-center">
+                    <h4>Milk Tea Caramel Deluxe</h4>
+                    <h5>Drinks & Refreshment</h5>
+                </div>
+                <div class="gallery-price-con">
+                    <p>₱100.00</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="gallery-item-con">
+            <button class="gallery-overlay flex-center" onclick="order(0)">
+                <h2>*Tap to Order*</h2>
+            </button>
+            <div class="gallery-overlay-btn">
+                <button>
+                    <img src="public/imgs/icons/like.png" alt="">
+                </button>
+                <button>
+                    <img src="public/imgs/icons/dislike.png" alt="">
+                </button>
+            </div>
+            <div class="gallery-img-con">
+                <img src="public/imgs/items/placeholder.png" alt="">
+            </div>
+            <div class="gallery-bottom-con flex-center">
+                <div class="gallery-text-con flex-center">
+                    <h4>Milk Tea Caramel Deluxe</h4>
+                    <h5>Drinks & Refreshment</h5>
+                </div>
+                <div class="gallery-price-con">
+                    <p>₱100.00</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+<div class="wave flex-center">
+    <img src="public/imgs/logos/footer-cruve.png" alt="">
+</div>
+
+<footer id="main-footer" class="flex-center">
+
+    <div class="footer-img">
+        <img src="public/imgs/logos/logo-02.png" alt="">
+    </div>
+
+    <div class="footer-about flex-center">
+        <h2>CanteenHub</h2>
+        <h4>
+            CanteenHub is a smart online platform that connects students and campus canteens in one convenient place. We make ordering food faster, easier, and more organized so you can skip the lines, track your orders, and enjoy your meals hassle-free.
+        </h4>
+    </div>
+
+    <div class="footer-contacts flex-center">
+        <div class="flex-center">
+            <img src="public/imgs/icons/telephone-call.png" alt="">
+            0992-207-5335
+        </div>
+        <div class="flex-center">
+            <img src="public/imgs/icons/mail.png" alt="">
+            jreponoya_240000001805@uic.edu.ph
+        </div>
+    </div>
+
+</footer>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
+<script src="public/js/script.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const loggedUser = safeJSONParse(localStorage.getItem("loggedUser"), null);
+      const currentType = localStorage.getItem("selectedType");
+
+      const bannerImg = document.getElementById("banner-type-img");
+
+      const rangeInput = document.getElementById("priceRange");
+      const searchInput = document.querySelector(".menu-search-con input");
+      const searchBtn = document.querySelector(".menu-search-con button");
+      const sortButtons = document.querySelectorAll(".sort-btn");
+      const menuGallery = document.querySelector(".menu-gallery-con");
+
+      let allItems = [];
+      let filteredItems = [];
+      let likedIds = [];
+
+      // --- Update banner based on type ---
+      function updateBanner() {
+        const bannerMap = {
+          riceMeal: "public/imgs/banner/riceMeal.png",
+          noodles: "public/imgs/banner/noodles.png",
+          snacks: "public/imgs/banner/snacks.png",
+          desserts: "public/imgs/banner/desserts.png",
+          drinks: "public/imgs/banner/drinks.png",
+          bakedGoods: "public/imgs/banner/bakedGoods.png",
+        };
+
+        bannerImg.src = bannerMap[currentType] || "public/imgs/banner/default.png";
+      }
+
+      // --- Load items ---
+      async function loadItems() {
+        try {
+          updateBanner();
+
+          const response = await fetch("http://localhost:8090/api/items");
+          const data = await response.json();
+
+          // Only show selected type
+          allItems = currentType
+            ? data.filter(item => item.type === currentType)
+            : data;
+
+          // Fetch liked items for logged user
+          if (loggedUser) {
+            const likesRes = await fetch(`http://localhost:8090/api/likes/user/${loggedUser.id}`);
+            const likedItems = await likesRes.json();
+            likedIds = likedItems.map(i => i.id);
+          }
+
+          filteredItems = [...allItems];
+          renderItems(filteredItems);
+        } catch (error) {
+          console.error("Error loading items:", error);
+        }
+      }
+
+      // --- Render items ---
+      function renderItems(items) {
+        menuGallery.innerHTML = "";
+
+        if (!items.length) {
+          menuGallery.innerHTML = "<p class='no-items'>No items found.</p>";
+          return;
+        }
+
+        items.forEach(item => {
+          const isLiked = likedIds.includes(item.id);
+          const likeIcon = isLiked
+            ? "public/imgs/icons/like-pressed.png"
+            : "public/imgs/icons/like.png";
+
+          const itemHTML = `
+            <div class="gallery-item-con" data-id="${item.id}">
+              <button class="gallery-overlay flex-center" onclick="order(${item.id})">
+                <h2>*Tap to Order*</h2>
+              </button>
+              <div class="gallery-overlay-btn">
+                <button class="like-btn" data-id="${item.id}">
+                  <img src="${likeIcon}" alt="like">
+                </button>
+              </div>
+              <div class="gallery-img-con">
+                <img src="${item.imageUrl || 'public/imgs/items/placeholder.png'}" alt="${item.name}">
+              </div>
+              <div class="gallery-bottom-con flex-center">
+                <div class="gallery-text-con flex-center">
+                  <h4>${item.name}</h4>
+                  <h5>${formatType(item.type)}</h5>
+                </div>
+                <div class="gallery-price-con">
+                  <p>₱${item.price}.00</p>
+                </div>
+              </div>
+            </div>
+          `;
+          menuGallery.insertAdjacentHTML("beforeend", itemHTML);
+        });
+
+        attachLikeListeners();
+      }
+
+      // --- Like button handling ---
+      function attachLikeListeners() {
+        document.querySelectorAll(".like-btn").forEach(btn => {
+          btn.addEventListener("click", async () => {
+            if (!loggedUser) {
+              alert("You must be logged in to like an item.");
+              return;
+            }
+
+            const itemId = parseInt(btn.dataset.id);
+            const img = btn.querySelector("img");
+
+            try {
+              const res = await fetch(
+                `http://localhost:8090/api/likes/toggle?userId=${loggedUser.id}&itemId=${itemId}`,
+                { method: "POST" }
+              );
+              const result = await res.text();
+
+              const isNowLiked = result.includes("Liked");
+              img.src = isNowLiked
+                ? "public/imgs/icons/like-pressed.png"
+                : "public/imgs/icons/like.png";
+
+              if (isNowLiked) likedIds.push(itemId);
+              else likedIds = likedIds.filter(id => id !== itemId);
+
+              img.classList.add("pop");
+              setTimeout(() => img.classList.remove("pop"), 200);
+            } catch (err) {
+              console.error("Error toggling like:", err);
+            }
+          });
+        });
+      }
+
+      // --- Filters and sorting ---
+      rangeInput?.addEventListener("input", () => {
+        const maxPrice = parseFloat(rangeInput.value);
+        applyFilters({ maxPrice });
+      });
+
+      searchBtn?.addEventListener("click", () => {
+        const query = searchInput.value.trim().toLowerCase();
+        applyFilters({ query });
+      });
+
+      searchInput?.addEventListener("keyup", e => {
+        if (e.key === "Enter") searchBtn.click();
+      });
+
+      sortButtons.forEach(button => {
+        button.addEventListener("click", async () => {
+          const sortLabel = button.innerText.trim();
+          let sortType = "";
+
+          if (sortLabel.includes("A-Z")) sortType = "az";
+          else if (sortLabel.includes("Z-A")) sortType = "za";
+          else if (sortLabel.includes("Least")) sortType = "cheap";
+          else if (sortLabel.includes("Liked")) sortType = "liked";
+
+          await applyFilters({ sortType });
+        });
+      });
+
+      // --- Filter + Sort Logic ---
+      async function applyFilters({ sortType, query, maxPrice } = {}) {
+        let result = [...allItems];
+
+        if (query) {
+          result = result.filter(item =>
+            item.name.toLowerCase().includes(query.toLowerCase())
+          );
+        }
+
+        if (maxPrice) {
+          result = result.filter(item => item.price <= maxPrice);
+        }
+
+        if (sortType) {
+          switch (sortType) {
+            case "az":
+              result.sort((a, b) => a.name.localeCompare(b.name));
+              break;
+            case "za":
+              result.sort((a, b) => b.name.localeCompare(a.name));
+              break;
+            case "cheap":
+              result.sort((a, b) => a.price - b.price);
+              break;
+            case "liked":
+              if (loggedUser) {
+                const res = await fetch(`http://localhost:8090/api/likes/user/${loggedUser.id}`);
+                const likedItems = await res.json();
+                result = likedItems.filter(i => i.type === currentType);
+              } else {
+                result = result.filter(i => i.likedByUser);
+              }
+              break;
+          }
+        }
+
+        renderItems(result);
+      }
+
+      // --- Helpers ---
+      function formatType(type) {
+        switch (type) {
+          case "riceMeal": return "Rice Meal";
+          case "noodles": return "Noodles & Pasta";
+          case "snacks": return "Snacks";
+          case "desserts": return "Desserts & Sweets";
+          case "drinks": return "Drinks & Refreshments";
+          case "bakedGoods": return "Baked Goods";
+          default: return type;
+        }
+      }
+
+      function safeJSONParse(str, fallback = null) {
+        try {
+          return JSON.parse(str);
+        } catch {
+          return fallback;
+        }
+      }
+
+      // --- Start ---
+      loadItems();
+    });
+</script>
+
+
+
+
+
+
+
+
+</body>
+
+</html>
