@@ -1,4 +1,4 @@
-package com.canteen.hub.canteenhub.model;
+package hub.canteen.corp.canteenhubapplication.model;
 
 import jakarta.persistence.*;
 

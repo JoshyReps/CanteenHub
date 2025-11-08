@@ -1,10 +1,10 @@
-package com.canteen.hub.canteenhub.controller;
+package hub.canteen.corp.canteenhubapplication.controller;
 
-import com.canteen.hub.canteenhub.model.Order;
-import com.canteen.hub.canteenhub.model.User;
-import com.canteen.hub.canteenhub.repositories.ItemDAO;
-import com.canteen.hub.canteenhub.repositories.OrderDAO;
-import com.canteen.hub.canteenhub.repositories.UserDAO;
+import hub.canteen.corp.canteenhubapplication.model.Order;
+import hub.canteen.corp.canteenhubapplication.model.User;
+import hub.canteen.corp.canteenhubapplication.repositories.ItemDAO;
+import hub.canteen.corp.canteenhubapplication.repositories.OrderDAO;
+import hub.canteen.corp.canteenhubapplication.repositories.UserDAO;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -36,6 +36,7 @@ public class OrderController {
 
     @GetMapping("/myOrders")
     public ResponseEntity<?> getMyOrders(HttpSession session) {
+        System.out.println("Works Here");
 
         User user = (User) session.getAttribute("user");
 
@@ -109,6 +110,7 @@ public class OrderController {
         orderDao.deleteById(id);
         return ResponseEntity.ok("Order deleted successfully");
     }
+
 
 
     public record OrderRequestBody(Long userId, List<OrderItem> items) {}

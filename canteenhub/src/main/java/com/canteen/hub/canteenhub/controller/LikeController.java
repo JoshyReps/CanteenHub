@@ -1,11 +1,11 @@
-package com.canteen.hub.canteenhub.controller;
+package hub.canteen.corp.canteenhubapplication.controller;
 
-import com.canteen.hub.canteenhub.model.Item;
-import com.canteen.hub.canteenhub.model.Like;
-import com.canteen.hub.canteenhub.model.User;
-import com.canteen.hub.canteenhub.repositories.ItemDAO;
-import com.canteen.hub.canteenhub.repositories.LikesDAO;
-import com.canteen.hub.canteenhub.repositories.UserDAO;
+import hub.canteen.corp.canteenhubapplication.model.Item;
+import hub.canteen.corp.canteenhubapplication.model.Like;
+import hub.canteen.corp.canteenhubapplication.model.User;
+import hub.canteen.corp.canteenhubapplication.repositories.ItemDAO;
+import hub.canteen.corp.canteenhubapplication.repositories.LikesDAO;
+import hub.canteen.corp.canteenhubapplication.repositories.UserDAO;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -50,11 +50,9 @@ public class LikeController {
 
 
         if (existing.isPresent()) {
-            // Unlike (remove record)
             likesDao.delete(existing.get());
             return ResponseEntity.ok("Unliked");
         } else {
-            // Like (create record)
             Like like = new Like();
             like.setUserId(userOpt.get());
             like.setItem(itemOpt.get());

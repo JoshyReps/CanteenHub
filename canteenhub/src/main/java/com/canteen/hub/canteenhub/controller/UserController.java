@@ -1,8 +1,7 @@
-package com.canteen.hub.canteenhub.controller;
+package hub.canteen.corp.canteenhubapplication.controller;
 
-import com.canteen.hub.canteenhub.model.Item;
-import com.canteen.hub.canteenhub.model.User;
-import com.canteen.hub.canteenhub.repositories.UserDAO;
+import hub.canteen.corp.canteenhubapplication.model.User;
+import hub.canteen.corp.canteenhubapplication.repositories.UserDAO;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -50,6 +49,7 @@ public class UserController {
     @PostMapping("/login")
     public ResponseEntity<?> loginUser(@RequestBody User userData, HttpSession session) {
 
+        System.out.println("Works Here");
         Optional<User> user = userDao.findByEmail(userData.getEmail());
 
         if (user.isEmpty() || !user.get().getPassword().equals(userData.getPassword())) {

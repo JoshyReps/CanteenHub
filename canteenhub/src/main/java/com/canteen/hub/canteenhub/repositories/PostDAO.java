@@ -1,6 +1,6 @@
-package com.canteen.hub.canteenhub.repositories;
+package hub.canteen.corp.canteenhubapplication.repositories;
 
-import com.canteen.hub.canteenhub.model.Post;
+import hub.canteen.corp.canteenhubapplication.model.Post;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface PostDAO extends JpaRepository<Post, Long> {

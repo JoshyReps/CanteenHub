@@ -1,7 +1,7 @@
-package com.canteen.hub.canteenhub.controller;
+package hub.canteen.corp.canteenhubapplication.controller;
 
-import com.canteen.hub.canteenhub.model.Item;
-import com.canteen.hub.canteenhub.repositories.ItemDAO;
+import hub.canteen.corp.canteenhubapplication.model.Item;
+import hub.canteen.corp.canteenhubapplication.repositories.ItemDAO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

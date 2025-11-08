@@ -1,9 +1,9 @@
-package com.canteen.hub.canteenhub.controller;
+package hub.canteen.corp.canteenhubapplication.controller;
 
-import com.canteen.hub.canteenhub.model.Post;
-import com.canteen.hub.canteenhub.model.User;
-import com.canteen.hub.canteenhub.repositories.PostDAO;
-import com.canteen.hub.canteenhub.repositories.UserDAO;
+import hub.canteen.corp.canteenhubapplication.model.Post;
+import hub.canteen.corp.canteenhubapplication.model.User;
+import hub.canteen.corp.canteenhubapplication.repositories.PostDAO;
+import hub.canteen.corp.canteenhubapplication.repositories.UserDAO;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -33,8 +33,7 @@ public class PostController {
         return postDao.findAll();
     }
 
-    private static final String UPLOAD_DIR = "uploads/public/imgs/posts/";
-    ;
+    private static final String UPLOAD_DIR = "uploads/public/imgs/posts/";;
 
     @PostMapping("/upload")
     public ResponseEntity<?> uploadPost(
@@ -54,17 +53,14 @@ public class PostController {
                 File uploadDir = new File(UPLOAD_DIR);
                 if (!uploadDir.exists()) uploadDir.mkdirs();
 
-                // Generate unique filename
                 String filename = System.currentTimeMillis() + "_" + imageFile.getOriginalFilename();
 
                 Path filePath = Paths.get(UPLOAD_DIR + filename);
                 Files.write(filePath, imageFile.getBytes());
 
-                // ✅ This URL works instantly, no restart required
                 imageUrl = "/public/imgs/posts/" + filename;
             }
 
-            // Save post in DB
             Post post = new Post();
             post.setTitle(title);
             post.setImgUrl(imageUrl);

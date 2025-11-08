@@ -1,4 +1,4 @@
-package com.canteen.hub.canteenhub.config;
+package hub.canteen.corp.canteenhubapplication.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

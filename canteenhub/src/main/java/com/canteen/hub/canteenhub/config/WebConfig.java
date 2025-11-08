@@ -1,4 +1,4 @@
-package com.canteen.hub.canteenhub.config;
+package hub.canteen.corp.canteenhubapplication.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -11,7 +11,6 @@ public class WebConfig implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
-                // 👇 change this to your frontend’s actual URL
                 .allowedOriginPatterns("http://localhost:3000", "http://127.0.0.1:5500")
                 .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                 .allowCredentials(true)
